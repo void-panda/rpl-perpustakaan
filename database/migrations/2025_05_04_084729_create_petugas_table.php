@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('books', function (Blueprint $table) {
-            $table->id();
+        Schema::create('petugas', function (Blueprint $table) {
+            $table->uuid('kode_petugas')->primary();
+            $table->string('nama');
+            $table->string('jabatan');
+            $table->string('username')->unique();
+            $table->string('password');
+            $table->string('role');
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('petugas');
     }
 };

@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
-use App\Http\Requests\StoreBookRequest;
-use App\Http\Requests\UpdateBookRequest;
+use App\Models\Petugas;
+use App\Http\Requests\StorePetugasRequest;
+use App\Http\Requests\UpdatePetugasRequest;
 
-class BookController extends Controller
+class PetugasController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('books.index');
+        return view('petugas.index');
     }
 
     /**
@@ -21,13 +21,13 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('books.create');
+        return view('petugas.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreBookRequest $request)
+    public function store(StorePetugasRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Book $book)
+    public function show(Petugas $petugas)
     {
         //
     }
@@ -43,7 +43,7 @@ class BookController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Book $book)
+    public function edit(Petugas $petugas)
     {
         //
     }
@@ -51,7 +51,7 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBookRequest $request, Book $book)
+    public function update(UpdatePetugasRequest $request, Petugas $petugas)
     {
         //
     }
@@ -59,7 +59,7 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Book $book)
+    public function destroy(Petugas $petugas)
     {
         //
     }

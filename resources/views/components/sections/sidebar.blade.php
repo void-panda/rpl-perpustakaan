@@ -8,20 +8,20 @@
       'title' => 'Anggota',
       'href' => '#',
       'icon' => 'users',
-      'route' => 'members*',
+      'route' => 'anggota*',
       'children' => [
-        ['title' => 'Mahasiswa', 'href' => '#'],
-        ['title' => 'Non-Mahasiswa', 'href' => '#'],
+        ['title' => 'Siswa', 'href' => route('anggota-siswa.index')],
+        ['title' => 'Non-Siswa', 'href' => route('anggota-nonsiswa.index')],
       ],
     ],
     [
       'title' => 'Buku',
       'href' => '#',
-      'route' => 'books*',
+      'route' => 'buku*',
       'icon' => 'book',
       'children' => [
-        ['title' => 'Lists Buku', 'href' => route('books.index')],
-        ['title' => 'Tambah Buku', 'href' => route('books.create')],
+        ['title' => 'Lists Buku', 'href' => route('buku.index')],
+        ['title' => 'Tambah Buku', 'href' => route('buku.create')],
       ],
     ],
     [
@@ -37,7 +37,7 @@
     [
       'title' => 'Pengembalian',
       'href' => '#',
-      'route' => 'book-returns*',
+      'route' => 'kembali*',
       'icon' => 'book-open',
       'children' => [
         ['title' => 'Mahasiswa', 'href' => '#'],
@@ -45,7 +45,7 @@
       ],
     ],
     ['title' => 'Report', 'role' => 'admin', 'href' => '#', 'icon' => 'archive'],
-    ['title' => 'Kelola Operator', 'role' => 'admin', 'href' => '#', 'icon' => 'users'],
+    ['title' => 'Kelola Petugas', 'role' => 'admin', 'href' => route('petugas.index'), 'icon' => 'users'],
   ];
 @endphp
 
@@ -76,19 +76,19 @@
       </div>
       <ul class="nav flex-column pt-3 pt-md-0">
         <li class="nav-item">
-          <a href="../../index.html" class="nav-link d-flex align-items-center">
+          <a href="../../index.html" class="btn btn-white fw-bold d-flex flex-column justify-content-center align-items-center">
             <span class="sidebar-icon">
-              <img src="{{ asset('assets/assets/img/brand/light.svg') }}" height="20" width="20" alt="Volt Logo">
+              PERPUSTAKAAN
             </span>
-            <span class="mt-1 ms-1 sidebar-text">Volt</span>
+            <span class="mt-1 sidebar-icon">SMKN 1 LOPOK</span>
           </a>
         </li>
 
         @foreach ($links as $link)
           @if (!isset($link['children']) || count($link['children']) == 0)
             <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
-            <li class="nav-item">
-              <a href="{{ $link['href'] }}" class="nav-link">
+            <li class="nav-item {{ $currentUrl == $link['href'] ? 'active' : '' }}">
+              <a href="{{ $link['href'] }}" class="nav-link ">
                 <span class="sidebar-icon">
                   <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
                 </span> 
@@ -119,7 +119,7 @@
             role="list" id="submenu-{{ $link['title'] }}" aria-expanded="false">
             <ul class="flex-column nav">
               @foreach ($link['children'] as $child)
-              <li class="nav-item {{ $child['href'] == $currentUrl ? 'active' : '' }}">
+              <li class="nav-item {{ (Str::startsWith($currentUrl, $child['href'])) ? 'active' : '' }}">
                     <a class="nav-link" href="{{ $child['href'] }}">
                       <span class="sidebar-text">{{ $child['title'] }} </span>
                     </a>
@@ -130,12 +130,12 @@
           </li>
           @endif
         @endforeach
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a href="../../pages/upgrade-to-pro.html"
-            class="btn btn-secondary d-flex align-items-center justify-content-center btn-upgrade-pro">
+            class="btn btn-danger d-flex align-items-center justify-content-center btn-upgrade-pro">
             <span>Logout</span>
           </a>
-        </li>
+        </li> --}}
       </ul>
     </div>
   </nav>
